@@ -1,4 +1,4 @@
-from main.Products import Product
+from main.Product import Product
 
 
 class Category:
@@ -28,4 +28,7 @@ class Category:
     @products.setter
     def products(self, new_product):
         get_object = Product(name=new_product['name'], description=new_product['description'], price=new_product['price'], quantity=new_product['quantity'])
-        self.__products.append(get_object)
+        if isinstance(new_product, Product):
+            self.__products.append(get_object)
+        else:
+            raise TypeError
