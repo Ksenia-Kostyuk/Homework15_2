@@ -54,7 +54,8 @@ class MixinRepr:
         print(repr(self))
 
     def __repr__(self):
-        return f'{self.__class__.__name__}, {self.object}'
+        return f'''Класс миксин -> {self.__class__.__name__}, наименование продукты -> {self.name} 
+        Описание товара -> {self.description}, цена - {self.price}, в наличии: {self.remain}'''
 
 
 class Smartphones(Product):
