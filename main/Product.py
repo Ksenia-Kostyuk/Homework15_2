@@ -1,6 +1,16 @@
 from abc import ABC
 
-class AbstrcProduct():
+
+class AbstrcProduct(ABC):
+    '''Определяет общий интерфейс классов'''
+
+    @abstractmethod
+    def codes(self):
+        pass
+
+
+class Product(AbstrcProduct):
+    """Описание конкретного товара"""
 
     def __init__(self, name, description, price, remain):
         self.name = name
@@ -8,23 +18,12 @@ class AbstrcProduct():
         self._price = price
         self.remain = remain
 
-
-    @absreactmethod
     def name(self):
         return f'Ваш продукт - {self.name}'
 
-
-class Product(AbstrcProduct):
-    """Описание конкретного товара"""
-
-    def __init__(self, name, description, price, remain):
-        super().__init__(name, description, price, remain)
-
-    def name(self):
-        return f'Ваш продукт - {self.name}'
-
+    @property
     def __str__(self):
-         return f'{self.name}, {self.price}. Остаток: {self.remain} шт.'
+        return f'{self.name}, {self.price}. Остаток: {self.remain} шт.'
 
     def __add__(self, other):
         if isinstance(other, type(self)):
@@ -44,15 +43,15 @@ class Product(AbstrcProduct):
     @price.setter
     def price(self, new_price):
         if int(new_price) <= 0:
-            print(f'Цена введена некорректно')
+            print('Цена введена некорректно')
         else:
             self._price = new_price
 
 
 class MixinRepr:
 
-    def __init__(self, object):
-        self.object = object
+    def __init__(self):
+        print(repr(self))
 
     def __repr__(self):
         return f'{self.__class__.__name__}, {self.object}'
@@ -69,6 +68,7 @@ class Smartphones(Product):
 
     def name(self):
         return f'Ваш продукт - {self.name}'
+
 
 class LawnGrass(Product):
 

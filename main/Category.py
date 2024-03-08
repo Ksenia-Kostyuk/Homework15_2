@@ -27,7 +27,8 @@ class Category:
 
     @products.setter
     def products(self, new_product):
-        get_object = Product(name=new_product['name'], description=new_product['description'], price=new_product['price'], quantity=new_product['quantity'])
+        get_object = Product(name=new_product['name'], description=new_product['description'],
+                             price=new_product['price'], quantity=new_product['quantity'])
         if isinstance(new_product, Product):
             self.__products.append(get_object)
         else:
