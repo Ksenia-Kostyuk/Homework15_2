@@ -1,5 +1,6 @@
 from main.Product import Product
 
+#from main.MyException import  CategoryException
 
 class Category:
     """Описание категории товаров"""
@@ -27,9 +28,28 @@ class Category:
 
     @products.setter
     def products(self, new_product):
+        '''Добавляет объект в список'''
         get_object = Product(name=new_product['name'], description=new_product['description'],
                              price=new_product['price'], quantity=new_product['quantity'])
-        if isinstance(new_product, Product):
+        if new_product['quantity'] == 0:
+            raise ValueError('Товар с нулевым количеством не может быть добавлен')
+            exit()
+        elif isinstance(new_product, Product):
             self.__products.append(get_object)
-        else:
+        elif not isinstance(new_product, Product):
             raise TypeError
+
+    def sum_price(self):
+        '''Подсчитывает средний ценник всех товаров'''
+        result = 0
+        try:
+            for i in self.__products:
+                result += i['price'] / i['quantity']
+            return result
+        except ZeroDivisionError:
+            print(0)
+
+
+#if __name__ == '__main__':
+    #op = Category('Фрукты', 'Спелые', [{'name':'Яблоко', 'description':'Сладкое', 'price': 10, 'quantity': 10}, {'name':'Апельсин', 'description':'Спелый', 'price': 15, 'quantity': 6}])
+    #print(op.sum_price())
