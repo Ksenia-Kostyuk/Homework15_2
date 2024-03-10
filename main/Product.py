@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class AbstrcProduct(ABC):
@@ -6,6 +6,7 @@ class AbstrcProduct(ABC):
 
     @abstractmethod
     def codes(self):
+        '''Вывод количества товаров на складе'''
         pass
 
 
@@ -18,14 +19,16 @@ class Product(AbstrcProduct):
         self._price = price
         self.remain = remain
 
-    def name(self):
-        return f'Ваш продукт - {self.name}'
+    def codes(self):
+        return f'На складе {self.remain} шт.'
 
     @property
     def __str__(self):
+        '''Вывод товара, цены и его количества'''
         return f'{self.name}, {self.price}. Остаток: {self.remain} шт.'
 
     def __add__(self, other):
+        '''ВЫчисляет цену на весь ассортимент'''
         if isinstance(other, type(self)):
             return self.price * self.remain + other.price * other.remain
         else:
@@ -54,7 +57,8 @@ class MixinRepr:
         print(repr(self))
 
     def __repr__(self):
-        return f'{self.__class__.__name__}, {self.object}'
+        return f'''Класс миксин -> {self.__class__.__name__}, наименование продукты -> {self.name} 
+        Описание товара -> {self.description}, цена - {self.price}, в наличии: {self.remain}'''
 
 
 class Smartphones(Product):
@@ -66,8 +70,8 @@ class Smartphones(Product):
         self.memory = memory
         self.color = color
 
-    def name(self):
-        return f'Ваш продукт - {self.name}'
+    def codes(self):
+        return f'На складе {self.remain} шт.'
 
 
 class LawnGrass(Product):
@@ -78,5 +82,5 @@ class LawnGrass(Product):
         self.germination_time = germination_time
         self.color = color
 
-    def name(self):
-        return f'Ваш продукт - {self.name}'
+    def codes(self):
+        return f'На складе {self.remain} шт.'
