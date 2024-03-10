@@ -1,6 +1,5 @@
 from main.Product import Product
 
-#from main.MyException import  CategoryException
 
 class Category:
     """Описание категории товаров"""
