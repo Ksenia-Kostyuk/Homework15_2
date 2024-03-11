@@ -2,11 +2,11 @@ from abc import ABC, abstractmethod
 
 
 class AbstrcProduct(ABC):
-    '''Определяет общий интерфейс классов'''
+    """Определяет общий интерфейс классов"""
 
     @abstractmethod
     def codes(self):
-        '''Вывод количества товаров на складе'''
+        """Вывод количества товаров на складе"""
         pass
 
 
@@ -24,11 +24,11 @@ class Product(AbstrcProduct):
 
     @property
     def __str__(self):
-        '''Вывод товара, цены и его количества'''
+        """Вывод товара, цены и его количества"""
         return f'{self.name}, {self.price}. Остаток: {self.remain} шт.'
 
     def __add__(self, other):
-        '''ВЫчисляет цену на весь ассортимент'''
+        """Вычисляет цену на весь ассортимент"""
         if isinstance(other, type(self)):
             return self.price * self.remain + other.price * other.remain
         else:
