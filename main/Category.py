@@ -27,19 +27,18 @@ class Category:
 
     @products.setter
     def products(self, new_product):
-        '''Добавляет объект в список'''
+        """Добавляет объект в список"""
         get_object = Product(name=new_product['name'], description=new_product['description'],
                              price=new_product['price'], quantity=new_product['quantity'])
         if new_product['quantity'] == 0:
             raise ValueError('Товар с нулевым количеством не может быть добавлен')
-            exit()
         elif isinstance(new_product, Product):
             self.__products.append(get_object)
         elif not isinstance(new_product, Product):
             raise TypeError
 
     def sum_price(self):
-        '''Подсчитывает средний ценник всех товаров'''
+        """Подсчитывает средний ценник всех товаров"""
         result = 0
         try:
             for i in self.__products:
